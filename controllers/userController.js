@@ -44,6 +44,7 @@ export const loginUser = async (req, res) => {
         }
 
         const user = await User.findOne({ email });
+        console.log("user",user)
         if (!user) {
             return res.status(400).json({ message: "Invalid credentials" });
         }
@@ -59,9 +60,6 @@ export const loginUser = async (req, res) => {
             { expiresIn: "1d" }
         );
 
-        console.log("JWT token generated");
-
-        // ⭐ FINAL COOKIE CONFIG (Cross-site working)
         res.cookie("token", token, {
             httpOnly: true,
             secure: true,              // required on Render (HTTPS)
@@ -71,7 +69,8 @@ export const loginUser = async (req, res) => {
         });
 
         res.status(200).json({ 
-            role: user.role, 
+            role: user.role,
+            name:user.name,
             message: "Login successfully" 
         });
 
