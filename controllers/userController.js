@@ -49,7 +49,8 @@ export const loginUser = async (req, res) => {
             { expiresIn: "1d" }
         );
         res.cookie("token", token, {
-            httpOnly: true, secure: true,              // required for https
+            httpOnly: true, 
+            secure: true,              
             sameSite: "None",
         });
         res.json({ role: user.role, message: "login successfully" });
@@ -75,9 +76,9 @@ export const logOut = (req, res) => {
     try {
         res.clearCookie("token", {
             httpOnly: true,
-            secure: true,              // required for https
+            secure: true,              
             sameSite: "None",
-            // secure: process.env.NODE_ENV === "production", // optional
+            
         });
         res.status(200).json({ message: "User logged out successfully" });
     } catch (error) {

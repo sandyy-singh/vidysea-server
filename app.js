@@ -12,11 +12,18 @@ const app = express();
 
 
 
-// ✅ Middleware
+
+app.set("trust proxy", 1);
+
+
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://vidysea-client.onrender.com'],
-  credentials: true
+    origin: [
+        "https://vidysea-client.onrender.com",
+        "http://localhost:5173"
+    ],
+    credentials: true
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 
