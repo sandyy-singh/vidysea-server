@@ -14,7 +14,7 @@ const app = express();
 
 // ✅ Middleware
 app.use(cors({
-  origin: process.env.FORNTEND_URL,
+  origin: "https://vidysea-client.onrender.com",
   credentials: true
 }));
 app.use(express.json());
