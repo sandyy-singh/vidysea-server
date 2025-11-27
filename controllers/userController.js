@@ -66,7 +66,8 @@ export const loginUser = async (req, res) => {
             httpOnly: true,
             secure: true,              // required on Render (HTTPS)
             sameSite: "None",          // required for cross-origin
-            path: "/",                 // required otherwise Chrome rejects
+            path: "/",        
+            partitioned: true          // required otherwise Chrome rejects
         });
 
         res.status(200).json({ 
@@ -110,6 +111,7 @@ export const logOut = (req, res) => {
             secure: true,
             sameSite: "None",
             path: "/",   // ⭐ MUST match login cookie path
+            partitioned: true 
         });
 
         res.status(200).json({ message: "User logged out successfully" });
